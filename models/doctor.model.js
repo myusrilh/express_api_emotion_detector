@@ -8,7 +8,6 @@ const Doctor = (doctor) => {
     this.status = doctor.status;
     this.created_at = doctor.created_at;
     this.updated_at = doctor.updated_at;
-
 };
 
 Doctor.getAllDoctor = async (request, result, next) => {
@@ -21,7 +20,9 @@ Doctor.getAllDoctor = async (request, result, next) => {
 
             if (res.length) {
                 console.log("found doctor: ", res);
-                return result.status(200).send({ error: false, data: res, message: 'List all doctor' });
+                return result.status(200).send({ exist: true, data: res, message: 'List all doctor' });
+            } else {
+                return result.status(200).send({ exist: false, data: null, message: "No data" });
             }
 
         })

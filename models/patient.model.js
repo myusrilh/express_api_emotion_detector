@@ -21,7 +21,9 @@ Patient.getAllPatient = async (request, result, next) => {
 
             if (res.length) {
                 console.log("found patient: ", res);
-                return result.status(200).send({ error: false, data: res, message: "List all patient" });
+                return result.status(200).send({ exist: false, data: res, message: "List all patient" });
+            } else {
+                return result.status(200).send({ exist: true, data: null, message: "No data" });
             }
 
         })
