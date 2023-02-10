@@ -21,15 +21,15 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-// app.use('/', function (req, res) {
-//     console.log('opened url /');
-//     return res.status(200).send("<h1> Hello world </h1>");
-// });
-
 app.use('/api/doctor', doctor);
 app.use('/api/patient', patient);
 app.use('/api/history', history);
 app.use('/api/user', user);
+
+app.use('*', function (req, res) {
+    console.log('Wrong routes!');
+    return res.status(404).send("<h1> Wrong Routes! Insert another URL </h1>");
+});
 
 app.listen(port, () => {
     console.log(`Karyawan app listening at http://localhost:${port}`);

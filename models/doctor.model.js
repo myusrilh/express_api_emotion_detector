@@ -22,6 +22,7 @@ Doctor.getAllDoctor = async (request, result, next) => {
                 console.log("found doctor: ", res);
                 return result.status(200).send({ exist: true, data: res, message: 'List all doctor' });
             } else {
+                console.log("data not found! =>", { data: null });
                 return result.status(200).send({ exist: false, data: null, message: "No data" });
             }
 

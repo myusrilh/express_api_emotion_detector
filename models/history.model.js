@@ -25,6 +25,7 @@ History.getAllHistory = async (request, result, next) => {
                 console.log("found history: ", res);
                 return result.status(200).send({ exist: true, data: res, message: 'List all history' });
             } else {
+                console.log("data not found! =>", { data: null });
                 return result.status(200).send({ exist: false, data: null, message: "No data" });
             }
 
@@ -47,6 +48,7 @@ History.getHistoryByPatientID = async (request, result, next) => {
                     console.log("found history: ", res);
                     return result.status(200).send({ exist: true, data: res, message: 'History by patient ID' });
                 } else {
+                    console.log("data not found! =>", { data: null });
                     return result.status(200).send({ exist: false, data: null, message: "No data" });
                 }
 
@@ -69,6 +71,7 @@ History.getHistoryByDoctorID = async (request, result, next) => {
                     console.log("found history: ", res);
                     return result.status(200).send({ exist: true, data: res, message: 'History by doctor ID' });
                 } else {
+                    console.log("data not found! =>", { data: null });
                     return result.status(200).send({ exist: false, data: null, message: "No data" });
                 }
 

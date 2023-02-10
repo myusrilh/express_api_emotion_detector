@@ -32,7 +32,7 @@ User.getAllUser = async (request, result, next) => {
 
 User.getByUsernameAndPassword = async (request, result, next) => {
     try {
-        await sql.query("SELECT * FROM patient JOIN (SELECT * FROM user WHERE username = ? AND password = ?) as us ON patient.user_id = us.id;", [request.body.username, request.body.password], (err, res) => {
+        await sql.query("SELECT * FROM user WHERE username = ? AND password = ?", [request.body.username, request.body.password], (err, res) => {
             if (err) {
                 console.log("Error: ", err);
                 return result.status(400).send({ error: err, data: null, message: "Error getting data" });
@@ -42,7 +42,8 @@ User.getByUsernameAndPassword = async (request, result, next) => {
                 console.log("found patient: ", res);
                 return result.status(200).send({ exist: true, data: res, message: "List all user" });
             } else {
-                return result.status(200).send({ exist: false, data: null, message: "List all user" });
+                console.log("data not found! =>", { data: null });
+                return result.status(200).send({ exist: false, data: null, message: "No data" });
             }
 
         })
